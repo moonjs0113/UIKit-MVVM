@@ -43,7 +43,7 @@
         <!--Character-->
         <scene sceneID="VaK-wx-6zt">
             <objects>
-                <viewController id="FhR-P7-AC9" customClass="CharacterViewController" customModule="UIKit_MVVM" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FhR-P7-AC9" customClass="CharacterSearchViewController" customModule="UIKit_MVVM" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lOW-la-h4N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,10 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Only Input number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ERG-YL-qCm">
                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="editingChangedTextField:" destination="FhR-P7-AC9" eventType="editingDidEnd" id="1Q1-8K-dof"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ex) 123 or 3, 45, 23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IV-AD-Ogj">
                                                 <rect key="frame" x="0.0" y="39" width="373" height="20.5"/>
@@ -212,7 +215,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQM-ft-irw">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQM-ft-irw">
                                 <rect key="frame" x="41.5" y="748" width="331" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Bt0-ou-aF2"/>
@@ -242,6 +245,7 @@
                         <outlet property="idStackView" destination="C82-NA-264" id="C75-Wt-VPM"/>
                         <outlet property="idTextField" destination="ERG-YL-qCm" id="2BI-63-3SW"/>
                         <outlet property="nameTextField" destination="0b4-tX-F3u" id="Lzw-PJ-x79"/>
+                        <outlet property="requestButton" destination="bQM-ft-irw" id="AIB-Cp-wcK"/>
                         <outlet property="segmentedControl" destination="VrL-Ts-7Jk" id="IJY-KY-784"/>
                         <outlet property="speciesTextField" destination="hO0-6x-p1c" id="HFl-TC-ath"/>
                         <outlet property="statusSegmentedControl" destination="dMk-0a-i0E" id="VnL-6h-CgC"/>
