@@ -10,6 +10,7 @@ import UIKit
 class ResultViewController<M: Codable & Model>: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private var viewModel: ResultViewModel<M>!
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -20,6 +21,7 @@ class ResultViewController<M: Codable & Model>: UIViewController, UITableViewDel
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
+    // MARK: - Method
     func prepareView(viewModel: ResultViewModel<M>) {
         self.viewModel = viewModel
     }
@@ -79,6 +81,7 @@ class ResultViewController<M: Codable & Model>: UIViewController, UITableViewDel
         navigationController?.pushViewController(controller, animated: true)
     }
     
+    // MARK: - Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.models.count
     }

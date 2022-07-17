@@ -44,7 +44,7 @@ extension NetworkService {
     
     static func requestTotalObject<M: Codable>(as model: M.Type, completeHandler: @escaping NetworkClosure<ModelList<M>>) {
         guard let route = ModelRoute.convertToString(to: model) else {
-            completeHandler(nil, NetworkError.invalidType)
+            completeHandler(nil, .invalidType)
             return
         }
         
@@ -56,7 +56,7 @@ extension NetworkService {
     
     static func requestObject<M: Codable, F: FilterProtocol>(as model: M.Type, filterBy filter: [F] = [], completeHandler: @escaping NetworkClosure<ModelList<M>>) {
         guard let route = ModelRoute.convertToString(to: model) else {
-            completeHandler(nil, NetworkError.invalidType)
+            completeHandler(nil, .invalidType)
             return
         }
         
@@ -68,7 +68,7 @@ extension NetworkService {
     // Single or Multile Object(s)
     static func requestSingleObject<M: Codable>(as model: M.Type, id: Int, completeHandler: @escaping NetworkClosure<M>) {
         guard let route = ModelRoute.convertToString(to: model) else {
-            completeHandler(nil, NetworkError.invalidType)
+            completeHandler(nil, .invalidType)
             return
         }
         
@@ -79,7 +79,7 @@ extension NetworkService {
     
     static func requestSingleObjectToURL<M: Codable>(as model: M.Type, url: String?, completeHandler: @escaping NetworkClosure<M>) {
         guard let url = URL(string: url ?? "") else {
-            completeHandler(nil, NetworkError.invalidURL)
+            completeHandler(nil, .invalidURL)
             return
         }
         
@@ -90,7 +90,7 @@ extension NetworkService {
     
     static func requestMultipleObjects<M: Codable>(as model: M.Type, id: [Int], completeHandler: @escaping NetworkClosure<[M]>) {
         guard let route = ModelRoute.convertToString(to: model) else {
-            completeHandler(nil, NetworkError.invalidType)
+            completeHandler(nil, .invalidType)
             return
         }
         

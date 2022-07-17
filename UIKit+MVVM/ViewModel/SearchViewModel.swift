@@ -9,6 +9,8 @@ import Foundation
 
 final class SearchViewModel<M: Codable & Model> {
     var totalCount: Int = 0
+    var models: [M]?
+    var error: NetworkError?
     
     func isVaildateInputID(_ text: String) -> Bool {
         let pattern: String = "^[0-9, ]{1,10000}$"
@@ -32,32 +34,47 @@ final class SearchViewModel<M: Codable & Model> {
         return ResultViewModel(models: model)
     }
     
+    func clearError() {
+        error = nil
+    }
+    
     // Request
-    func requestTotalCount(_ completeHandler: @escaping (Int?, Error?) -> ()) {
+    func requestTotalCount(_ completeHandler: @escaping () -> ()) {
         DispatchQueue.global().async {
             NetworkService.requestTotalObject(as: M.self) { info, error in
-                completeHandler(info?.info.count, error)
+                self.totalCount = info?.info.count ?? 0
+                self.error = error
+                DispatchQueue.main.async {
+                    completeHandler()
+                }
             }
         }
     }
     
-    func requestMultipleInfo(ids: [Int], _ completeHandler: @escaping ([M]?, Error?) -> ()) {
+    func requestMultipleInfo(ids: [Int], _ completeHandler: @escaping () -> ()) {
         DispatchQueue.global().async {
             if ids.count == 1 {
                 if let id = ids.first {
                     NetworkService.requestSingleObject(as: M.self, id: id) { object, error in
-                        guard let object = object else {
-                            return completeHandler(nil, error)
+                        if let object = object {
+                            self.models = [object]
                         }
-                        let objects = [object]
-                        completeHandler(objects, error)
+                        self.error = error
+                        DispatchQueue.main.async {
+                            completeHandler()
+                        }
                     }
                 }
             } else {
                 NetworkService.requestMultipleObjects(as: M.self, id: ids) { objects, error in
-                    completeHandler(objects, error)
+                    self.models = objects
+                    self.error = error
+                    DispatchQueue.main.async {
+                        completeHandler()
+                    }
                 }
             }
+            
         }
     }
     

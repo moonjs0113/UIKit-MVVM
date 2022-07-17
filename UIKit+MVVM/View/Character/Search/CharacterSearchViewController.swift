@@ -22,7 +22,7 @@ class CharacterSearchViewController: UIViewController {
     @IBOutlet weak var speciesTextField: UITextField!
     @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
-
+    
     @IBOutlet weak var requestButton: UIButton!
     
     @IBAction func changedSegControl(_ sender: UISegmentedControl) {
@@ -46,22 +46,10 @@ class CharacterSearchViewController: UIViewController {
         startIndicatingActivity()
         if segmentedControl.selectedSegmentIndex == 0 {
             let ids = viewModel.convertStringToIntArray(idTextField.text ?? "")
-            viewModel.requestMultipleInfo(ids: ids) { characters, error in
-                DispatchQueue.main.async { [weak self] in
-                    guard let characters = characters, error == nil else {
-                        if let error = error {
-                            self?.showAlertController(title: "에러", message: "Error: \(error.localizedDescription)") {
-                                self?.stopIndicatingActivity()
-                            }
-                        }
-                        return
-                    }
-                    self?.stopIndicatingActivity()
-                    self?.navigateToCharacterResultView(characters)
-                }
+            viewModel.requestMultipleInfo(ids: ids) {[weak self] in
+                self?.fetchData()
+                self?.stopIndicatingActivity()
             }
-        } else {
-            stopIndicatingActivity()
         }
     }
     
@@ -83,23 +71,27 @@ class CharacterSearchViewController: UIViewController {
         typeTextField.delegate = self
         
         startIndicatingActivity()
-        viewModel.requestTotalCount { count, error in
-            DispatchQueue.main.async { [weak self] in
-                guard let count = count, error == nil else {
-                    if let error = error {
-                        self?.showAlertController(title: "에러", message: "Error: \(error.localizedDescription)") {
-                            self?.stopIndicatingActivity()
-                        }
-                    }
-                    return
-                }
-                self?.totalCountLabel.text = "Total Count: \(count)"
-                self?.stopIndicatingActivity()
-            }
+        viewModel.requestTotalCount { [weak self] in
+            self?.fetchData()
+            self?.stopIndicatingActivity()
         }
     }
     
-    private func navigateToCharacterResultView(_ characters: [Character]) {
+    func fetchData() {
+        if let error = viewModel.error {
+            showAlertController(title: "에러",
+                                message: "Error: \(error.localizedDescription)") { [weak self] in
+                self?.viewModel.clearError()
+            }
+        }
+        totalCountLabel.text = "Total Count: \(viewModel.totalCount)"
+        if let models = viewModel.models {
+            viewModel.models = nil
+            navigateToResultView(models)
+        }
+    }
+    
+    private func navigateToResultView(_ characters: [Character]) {
         let controller = ResultViewController<Character>()
         let characterResultViewModel = viewModel.getResultViewModel(model: characters)
         controller.prepareView(viewModel: characterResultViewModel)

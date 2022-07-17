@@ -25,22 +25,10 @@ class EpisodeSearchViewController: UIViewController {
         startIndicatingActivity()
         if segmentedControl.selectedSegmentIndex == 0 {
             let ids = viewModel.convertStringToIntArray(idTextField.text ?? "")
-            viewModel.requestMultipleInfo(ids: ids) { episodes, error in
-                DispatchQueue.main.async { [weak self] in
-                    guard let episodes = episodes, error == nil else {
-                        if let error = error {
-                            self?.showAlertController(title: "에러", message: "Error: \(error.localizedDescription)") {
-                                self?.stopIndicatingActivity()
-                            }
-                        }
-                        return
-                    }
-                    self?.stopIndicatingActivity()
-                    self?.navigateToResultView(episodes)
-                }
+            viewModel.requestMultipleInfo(ids: ids) {[weak self] in
+                self?.fetchData()
+                self?.stopIndicatingActivity()
             }
-        } else {
-            stopIndicatingActivity()
         }
     }
     
@@ -59,19 +47,23 @@ class EpisodeSearchViewController: UIViewController {
         idTextField.delegate = self
         
         startIndicatingActivity()
-        viewModel.requestTotalCount { count, error in
-            DispatchQueue.main.async { [weak self] in
-                guard let count = count, error == nil else {
-                    if let error = error {
-                        self?.showAlertController(title: "에러", message: "Error: \(error.localizedDescription)") {
-                            self?.stopIndicatingActivity()
-                        }
-                    }
-                    return
-                }
-                self?.totalCountLabel.text = "Total Count: \(count)"
-                self?.stopIndicatingActivity()
+        viewModel.requestTotalCount { [weak self] in
+            self?.fetchData()
+            self?.stopIndicatingActivity()
+        }
+    }
+    
+    func fetchData() {
+        if let error = viewModel.error {
+            showAlertController(title: "에러",
+                                message: "Error: \(error.localizedDescription)") { [weak self] in
+                self?.viewModel.clearError()
             }
+        }
+        totalCountLabel.text = "Total Count: \(viewModel.totalCount)"
+        if let models = viewModel.models {
+            viewModel.models = nil
+            navigateToResultView(models)
         }
     }
     
