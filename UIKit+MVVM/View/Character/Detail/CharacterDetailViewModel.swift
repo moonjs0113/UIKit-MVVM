@@ -8,10 +8,10 @@
 import Foundation
 
 final class CharacterDetailViewModel {
-    var model: Character
+    var character: Character
     
-    required init(model: Character) {
-        self.model = model
+    required init(character: Character) {
+        self.character = character
     }
     
     

@@ -1,14 +1,14 @@
 //
-//  CharacterDetailViewController.swift
+//  LocationDetailViewController.swift
 //  UIKit+MVVM
 //
-//  Created by Moon Jongseek on 2022/07/17.
+//  Created by Moon Jongseek on 2022/07/18.
 //
 
 import UIKit
 
-class CharacterDetailViewController: UIViewController {
-    private var viewModel: CharacterDetailViewModel!
+class LocationDetailViewController: UIViewController {
+    private var viewModel: LocationDetailViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +19,11 @@ class CharacterDetailViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = "\(viewModel.character.name)"
+        title = "\(viewModel.location.name)"
         
     }
     
-    func prepareView(viewModel: CharacterDetailViewModel) {
+    func prepareView(viewModel: LocationDetailViewModel) {
         self.viewModel = viewModel
     }
     

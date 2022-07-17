@@ -11,4 +11,5 @@ protocol Model {
     associatedtype FilterType where FilterType: FilterProtocol
     var id: Int { get }
     var name: String { get }
+    var url: String { get }
 }

@@ -77,6 +77,17 @@ extension NetworkService {
         }
     }
     
+    static func requestSingleObjectToURL<M: Codable>(as model: M.Type, url: String?, completeHandler: @escaping NetworkClosure<M>) {
+        guard let url = URL(string: url ?? "") else {
+            completeHandler(nil, NetworkError.invalidURL)
+            return
+        }
+        
+        manager.sendRequest(url: url, decodeTo: model.self) { result, error in
+            completeHandler(result, error)
+        }
+    }
+    
     static func requestMultipleObjects<M: Codable>(as model: M.Type, id: [Int], completeHandler: @escaping NetworkClosure<[M]>) {
         guard let route = ModelRoute.convertToString(to: model) else {
             completeHandler(nil, NetworkError.invalidType)

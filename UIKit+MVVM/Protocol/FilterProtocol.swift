@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FilterProtocol: Codable {
-    
+    func getStringValue() -> String
 }
 
 extension FilterProtocol {

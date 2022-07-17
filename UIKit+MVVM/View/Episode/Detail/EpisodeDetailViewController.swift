@@ -1,14 +1,14 @@
 //
-//  CharacterDetailViewController.swift
+//  EpisodeDetailViewController.swift
 //  UIKit+MVVM
 //
-//  Created by Moon Jongseek on 2022/07/17.
+//  Created by Moon Jongseek on 2022/07/18.
 //
 
 import UIKit
 
-class CharacterDetailViewController: UIViewController {
-    private var viewModel: CharacterDetailViewModel!
+class EpisodeDetailViewController: UIViewController {
+    private var viewModel: EpisodeDetailViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +19,10 @@ class CharacterDetailViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = "\(viewModel.character.name)"
-        
+        title = "\(viewModel.episode.name)"
     }
     
-    func prepareView(viewModel: CharacterDetailViewModel) {
+    func prepareView(viewModel: EpisodeDetailViewModel) {
         self.viewModel = viewModel
     }
     
