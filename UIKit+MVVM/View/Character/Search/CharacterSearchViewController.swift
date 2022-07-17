@@ -60,6 +60,8 @@ class CharacterSearchViewController: UIViewController {
                     self?.navigateToCharacterResultView(characters)
                 }
             }
+        } else {
+            stopIndicatingActivity()
         }
     }
     
@@ -68,6 +70,10 @@ class CharacterSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func setupUI() {

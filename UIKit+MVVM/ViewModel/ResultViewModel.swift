@@ -24,4 +24,8 @@ final class ResultViewModel<M: Codable & Model> {
             }
         }
     }
+    
+    func getCharacterViewModel(model: M) -> CharacterDetailViewModel {
+        return CharacterDetailViewModel(model: model as! Character)
+    }
 }
