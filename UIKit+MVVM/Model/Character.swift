@@ -13,25 +13,25 @@ struct Character: Codable, Model {
     let id: Int
     let name: String
 
-    let status: String?
-    let species: String?
-    let type: String?
-    let gender: String?
+    let status: String
+    let species: String
+    let type: String
+    let gender: String
 
-    let origin: CharacterLocation?
-    let location: CharacterLocation?
+    let origin: CharacterLocation
+    let location: CharacterLocation
 
-    let image: String?
+    let image: String
 
     let url: String
-    let episode: [String]?
-    let created: String?
+    let episode: [String]
+    let created: String
 
     var imageURL: URL {
 //        guard let url = URL(string: self.image ?? "") else {
 //            return URL(fileURLWithPath: "")
 //        }
-        return URL(string: self.image ?? "") ?? URL(fileURLWithPath: "")
+        return URL(string: self.image) ?? URL(fileURLWithPath: "")
     }
     
     enum CharacterFilter: FilterProtocol {

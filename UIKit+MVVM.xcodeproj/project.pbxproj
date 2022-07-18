@@ -38,6 +38,8 @@
 		C79C315B2882D8E300B6CBB2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C315A2882D8E300B6CBB2 /* UIViewController+Extension.swift */; };
 		C79C315D2882DA1D00B6CBB2 /* UIWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C315C2882DA1D00B6CBB2 /* UIWindow+Extension.swift */; };
 		C79C315F2882DA5D00B6CBB2 /* UIActivityIndicatorView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C315E2882DA5D00B6CBB2 /* UIActivityIndicatorView+Extension.swift */; };
+		C7A99A252885273600DF3DD5 /* CharacterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A99A242885273600DF3DD5 /* CharacterDetailView.xib */; };
+		C7A99A272885279700DF3DD5 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A99A262885279700DF3DD5 /* CharacterDetailView.swift */; };
 		C7F9C68028844C9B00B992E1 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9C67F28844C9B00B992E1 /* ResponseModel.swift */; };
 		C7F9C68228844DEC00B992E1 /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9C68128844DEC00B992E1 /* LocationSearchViewController.swift */; };
 		C7F9C68528844E0B00B992E1 /* EpisodeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9C68428844E0B00B992E1 /* EpisodeSearchViewController.swift */; };
@@ -77,6 +79,8 @@
 		C79C315A2882D8E300B6CBB2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C79C315C2882DA1D00B6CBB2 /* UIWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extension.swift"; sourceTree = "<group>"; };
 		C79C315E2882DA5D00B6CBB2 /* UIActivityIndicatorView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extension.swift"; sourceTree = "<group>"; };
+		C7A99A242885273600DF3DD5 /* CharacterDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailView.xib; sourceTree = "<group>"; };
+		C7A99A262885279700DF3DD5 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 		C7F9C67F28844C9B00B992E1 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		C7F9C68128844DEC00B992E1 /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		C7F9C68428844E0B00B992E1 /* EpisodeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeSearchViewController.swift; sourceTree = "<group>"; };
@@ -132,8 +136,10 @@
 		C72A1F752883FFC600DF4944 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				C72A1F712883F5EC00DF4944 /* CharacterDetailViewController.swift */,
+				C7A99A242885273600DF3DD5 /* CharacterDetailView.xib */,
+				C7A99A262885279700DF3DD5 /* CharacterDetailView.swift */,
 				C72A1F732883F5F900DF4944 /* CharacterDetailViewModel.swift */,
+				C72A1F712883F5EC00DF4944 /* CharacterDetailViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 				C79C312B2882712400B6CBB2 /* LaunchScreen.storyboard in Resources */,
 				C79C31282882712400B6CBB2 /* Assets.xcassets in Resources */,
 				C79C31262882712400B6CBB2 /* Main.storyboard in Resources */,
+				C7A99A252885273600DF3DD5 /* CharacterDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +388,7 @@
 				C79C314E2882CCAD00B6CBB2 /* NetworkService.swift in Sources */,
 				C79C31572882D3CE00B6CBB2 /* CharacterSearchViewController.swift in Sources */,
 				C79C314D2882CCAD00B6CBB2 /* NetworkManager.swift in Sources */,
+				C7A99A272885279700DF3DD5 /* CharacterDetailView.swift in Sources */,
 				C7F9C68528844E0B00B992E1 /* EpisodeSearchViewController.swift in Sources */,
 				C7F9C68228844DEC00B992E1 /* LocationSearchViewController.swift in Sources */,
 				C79C31522882CCAD00B6CBB2 /* Location.swift in Sources */,

@@ -99,4 +99,14 @@ extension NetworkService {
         }
     }
     
+    static func requestImageData(url: String, completeHandler: @escaping (Data?, NetworkError?) -> Void) {
+        guard let url = URL(string: url) else {
+            completeHandler(nil, .invalidURL)
+            return
+        }
+        
+        manager.sendRequestImageData(url: url) { data, error in
+            completeHandler(data, error)
+        }
+    }
 }

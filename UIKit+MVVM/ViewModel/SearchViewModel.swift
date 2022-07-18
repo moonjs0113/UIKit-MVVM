@@ -74,7 +74,6 @@ final class SearchViewModel<M: Codable & Model> {
                     }
                 }
             }
-            
         }
     }
     

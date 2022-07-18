@@ -43,6 +43,7 @@ extension NetworkManager {
         return result
     }
     
+    /// Request Single Models by URL
     func sendRequest<D: Codable>(url: URL, decodeTo: D.Type, completeHandler: @escaping NetworkClosure<D>) {
         let request = self.request(url, nil)
         self.session.dataTask(with: request) { data, response, error in
@@ -60,6 +61,7 @@ extension NetworkManager {
         .resume()
     }
     
+    /// Request Single or Multiple Models
     func sendRequest<D: Codable>(route: NetworkService.ModelRoute, ids: [Int] = [], decodeTo: D.Type, completeHandler: @escaping NetworkClosure<D>) {
         var urlString = self.baseURL + route.stringValue
         urlString += multipleObjectRouteValue(ids: ids)
@@ -84,6 +86,7 @@ extension NetworkManager {
         .resume()
     }
     
+    /// Request Models by Filter
     func sendRequest<D: Codable, F: FilterProtocol>(route: NetworkService.ModelRoute, filterBy filters: [F] = [], decodeTo: D.Type, completeHandler: @escaping NetworkClosure<D>) {
         let urlString = self.baseURL + route.stringValue
         
@@ -115,5 +118,14 @@ extension NetworkManager {
             completeHandler(result, nil)
         }
         .resume()
+    }
+    
+    /// Request Character Image Data
+    func sendRequestImageData(url: URL, completeHandler: @escaping (Data?, NetworkError?) -> Void) {
+        guard let data = try? Data(contentsOf: url) else {
+            completeHandler(nil, .nilResponse)
+            return
+        }
+        completeHandler(data, nil)
     }
 }

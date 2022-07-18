@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="height" constant="45" id="E8q-U2-DYj"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Search"/>
                                 <connections>
                                     <action selector="requestCharactersData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bKQ-36-Yfd"/>
                                 </connections>
@@ -145,7 +145,7 @@
                                     <constraint firstAttribute="height" constant="45" id="1a0-YL-Cew"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Search"/>
                                 <connections>
                                     <action selector="requestCharactersData:" destination="OZS-wr-Aid" eventType="touchUpInside" id="GcA-co-KqB"/>
                                 </connections>
@@ -356,7 +356,7 @@
                                     <constraint firstAttribute="height" constant="45" id="Bt0-ou-aF2"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Search"/>
                                 <connections>
                                     <action selector="requestCharactersData:" destination="FhR-P7-AC9" eventType="touchUpInside" id="eLy-rF-xAa"/>
                                 </connections>

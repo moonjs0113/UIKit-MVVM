@@ -55,9 +55,9 @@ class ResultViewController<M: Codable & Model>: UIViewController, UITableViewDel
         } else if let episode = model as? Episode {
             navigateToEpisodeDetailView(episode)
         } else {
-            self.showAlertController(title: "에러", message: "Error: \(NetworkError.invalidType)")
+            showAlertController(title: "에러", message: "Error: \(NetworkError.invalidType)")
         }
-        self.stopIndicatingActivity()
+        stopIndicatingActivity()
     }
     
     private func navigateToCharacterDetailView(_ character: Character) {
@@ -94,6 +94,7 @@ class ResultViewController<M: Codable & Model>: UIViewController, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        startIndicatingActivity()
         viewModel.requestInfo(index: indexPath.row) { model, error in
             DispatchQueue.main.async { [weak self] in
                 guard let model = model, error == nil else {
