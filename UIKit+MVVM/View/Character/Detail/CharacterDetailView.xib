@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterDetailView" customModule="UIKit_MVVM" customModuleProvider="target">
             <connections>
-                <outlet property="episdoeButton" destination="qcg-CT-atg" id="Cgo-Bw-IYb"/>
+                <outlet property="episodeButton" destination="qcg-CT-atg" id="Cgo-Bw-IYb"/>
                 <outlet property="genderLabel" destination="izW-oE-4op" id="SVl-fs-WC2"/>
                 <outlet property="idLabel" destination="SQZ-Ry-4eJ" id="GiN-WP-bCJ"/>
                 <outlet property="imageView" destination="JlQ-IV-sUC" id="nZY-ce-SYm"/>

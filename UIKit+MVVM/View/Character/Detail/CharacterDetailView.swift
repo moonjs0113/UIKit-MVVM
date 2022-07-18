@@ -24,7 +24,7 @@ class CharacterDetailView: UIView {
     @IBOutlet weak var originLocationButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     
-    @IBOutlet weak var episdoeButton: UIButton!
+    @IBOutlet weak var episodeButton: UIButton!
     
     // MARK: - Life Cycle
     override init(frame: CGRect) {

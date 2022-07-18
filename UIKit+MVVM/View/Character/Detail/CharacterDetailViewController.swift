@@ -8,12 +8,14 @@
 import UIKit
 
 class CharacterDetailViewController: UIViewController {
-    var characterDetailView = CharacterDetailView()
+    private var characterDetailView = CharacterDetailView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startIndicatingActivity()
         title = characterDetailView.getTitleText()
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
         characterDetailView.setupUI { [weak self] error in
             if let error = error {
                 self?.showAlertController(title: "에러",
@@ -30,7 +32,7 @@ class CharacterDetailViewController: UIViewController {
         
         characterDetailView.locationButton.addTarget(self, action: #selector(goToLocationDetail(_:)), for: .touchUpInside)
         
-        characterDetailView.episdoeButton.addTarget(self, action: #selector(goToEpisodeList(_:)), for: .touchUpInside)
+        characterDetailView.episodeButton.addTarget(self, action: #selector(goToEpisodeList(_:)), for: .touchUpInside)
     }
     
     func prepareView(viewModel: CharacterDetailViewModel) {

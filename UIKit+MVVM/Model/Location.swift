@@ -12,11 +12,11 @@ struct Location: Codable, Model {
     
     let id: Int
     let name: String
-    let type: String?
-    let dimension: String?
-    let residents: [String]?
+    let type: String
+    let dimension: String
+    let residents: [String]
     let url: String
-    let created: String?
+    let created: String
     
     enum LocationFilter: FilterProtocol {
         case name(String)
