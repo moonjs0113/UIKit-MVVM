@@ -95,7 +95,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="jNX-IO-dRB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="40s-U3-AZc"/>
-                <constraint firstItem="jNX-IO-dRB" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.900966" id="aJy-Br-ffe"/>
+                <constraint firstItem="jNX-IO-dRB" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.9" id="aJy-Br-ffe"/>
                 <constraint firstItem="jNX-IO-dRB" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="gHJ-Ga-PVv"/>
             </constraints>
             <point key="canvasLocation" x="139" y="144"/>

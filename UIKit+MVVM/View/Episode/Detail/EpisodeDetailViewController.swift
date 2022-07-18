@@ -8,7 +8,7 @@
 import UIKit
 
 class EpisodeDetailViewController: UIViewController {
-    private var episodeDetailView: EpisodeDetailView!
+    private var episodeDetailView = EpisodeDetailView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
