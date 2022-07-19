@@ -11,6 +11,7 @@ enum NetworkError: Error {
     case invalidType
     case invalidURL
     case nilResponse
+    case nilImageData
     case managerIsNil
     case errorEncodingJson
     case errorDecodingJson

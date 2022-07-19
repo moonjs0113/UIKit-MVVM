@@ -16,13 +16,13 @@ class CharacterDetailViewController: UIViewController {
         title = characterDetailView.getTitleText()
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        characterDetailView.setupUI { [weak self] error in
-            if let error = error {
-                self?.showAlertController(title: "에러",
-                                    message: "Error: \(error.localizedDescription)")
-            }
-            self?.stopIndicatingActivity()
+        do {
+            try characterDetailView.setupUI()
+        } catch (let e){
+            self.showAlertController(title: "에러",
+                                message: "Error: \(e as? NetworkError)")
         }
+        self.stopIndicatingActivity()
     }
     
     override func loadView() {

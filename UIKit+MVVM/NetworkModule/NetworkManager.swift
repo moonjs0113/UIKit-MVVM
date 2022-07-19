@@ -44,34 +44,32 @@ extension NetworkActer {
     }
     
     func jsonDecode<D: Codable>(data: Data, decodeTo: D.Type) throws -> D {
-        do {
-            return try JSONDecoder().decode(D.self, from: data)
-        } catch {
+        guard let model = try? JSONDecoder().decode(D.self, from: data) else {
             throw NetworkError.errorDecodingJson
         }
+        return model
     }
     
     /// Request Single Models by URL
     func sendRequest(url: URL) async throws -> Data {
         let request = self.request(url, nil)
-        do {
-            let (data, _) = try await self.session.data(for: request)
-            return data
-        } catch {
+        guard let (data, _) = try? await self.session.data(for: request) else {
             throw NetworkError.nilResponse
         }
+        return data
     }
     
     /// Request Single or Multiple Models
     func sendRequest<D: Codable>(route: NetworkService.ModelRoute, ids: [Int] = [], decodeTo: D.Type, completeHandler: @escaping NetworkClosure<D>) {
         var urlString = self.baseURL + route.stringValue
         urlString += multipleObjectRouteValue(ids: ids)
-        
+
         guard let url = URL(string: urlString) else {
             return completeHandler(nil, NetworkError.invalidURL)
         }
-        
+
         let request = self.request(url, route)
+
         self.session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 completeHandler(nil, .nilResponse)
@@ -81,7 +79,7 @@ extension NetworkActer {
                 completeHandler(nil, .errorDecodingJson)
                 return
             }
-            
+
             completeHandler(result, nil)
         }
         .resume()
@@ -122,11 +120,10 @@ extension NetworkActer {
     }
     
     /// Request Character Image Data
-    func sendRequestImageData(url: URL, completeHandler: @escaping (Data?, NetworkError?) -> Void) {
+    func sendRequestImageData(url: URL) throws -> Data {
         guard let data = try? Data(contentsOf: url) else {
-            completeHandler(nil, .nilResponse)
-            return
+            throw NetworkError.nilImageData
         }
-        completeHandler(data, nil)
+        return data
     }
 }

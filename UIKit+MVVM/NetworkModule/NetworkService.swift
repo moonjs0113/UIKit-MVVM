@@ -51,7 +51,6 @@ extension NetworkService {
         manager.sendRequest(route: route, decodeTo: ModelList<M>.self) { info, error in
             completeHandler(info, error)
         }
-        
     }
     
     static func requestObject<M: Codable, F: FilterProtocol>(as model: M.Type, filterBy filter: [F] = [], completeHandler: @escaping NetworkClosure<ModelList<M>>) {
@@ -97,14 +96,16 @@ extension NetworkService {
         }
     }
     
-    static func requestImageData(url: String, completeHandler: @escaping (Data?, NetworkError?) -> Void) {
+    static func requestImageData(url: String) throws -> Data {
         guard let url = URL(string: url) else {
-            completeHandler(nil, .invalidURL)
-            return
+            throw NetworkError.invalidURL
         }
         
-        manager.sendRequestImageData(url: url) { data, error in
-            completeHandler(data, error)
+        do {
+            let imageData = try manager.sendRequestImageData(url: url)
+            return imageData
+        } catch(let e as NetworkError) {
+            throw e
         }
     }
 }

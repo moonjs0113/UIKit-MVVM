@@ -16,16 +16,8 @@ final class CharacterDetailViewModel {
         self.character = character
     }
     
-    func requestImageData(_ completeHandler: @escaping () -> ()) {
-        NetworkService.requestImageData(url: character.image) { data, error in
-            DispatchQueue.global().async { [weak self] in
-                self?.imageData = data
-                self?.error = error
-                DispatchQueue.main.async {
-                    completeHandler()
-                }
-            }
-        }
+    func requestImageData() throws {
+        self.imageData = try NetworkService.requestImageData(url: character.image)
     }
     
     func requestLocationData(url: String) async throws -> Location {

@@ -80,12 +80,13 @@ class CharacterDetailView: UIView {
         return viewModel.character.name
     }
     
-    func setupUI(completeHandler: @escaping (NetworkError?) -> ()) {
-        viewModel.requestImageData { [weak self] in
-            self?.fetchData()
-            completeHandler(self?.viewModel.error)
-            self?.viewModel.clearError()
+    func setupUI() throws {
+        do {
+            try viewModel.requestImageData()
+        } catch(let e as NetworkError) {
+            throw e
         }
+        self.fetchData()
     }
     
     func requestLocationData(tag: Int) async throws -> Location {
