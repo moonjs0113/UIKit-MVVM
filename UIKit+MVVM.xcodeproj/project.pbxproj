@@ -18,7 +18,6 @@
 		C72B3B1E2884602400E85958 /* EpisodeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72B3B1D2884602400E85958 /* EpisodeDetailViewModel.swift */; };
 		C79C311F2882712400B6CBB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C311E2882712400B6CBB2 /* AppDelegate.swift */; };
 		C79C31212882712400B6CBB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C31202882712400B6CBB2 /* SceneDelegate.swift */; };
-		C79C31232882712400B6CBB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C31222882712400B6CBB2 /* ViewController.swift */; };
 		C79C31262882712400B6CBB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C79C31242882712400B6CBB2 /* Main.storyboard */; };
 		C79C31282882712400B6CBB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C79C31272882712400B6CBB2 /* Assets.xcassets */; };
 		C79C312B2882712400B6CBB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C79C31292882712400B6CBB2 /* LaunchScreen.storyboard */; };
@@ -62,7 +61,6 @@
 		C79C311B2882712400B6CBB2 /* UIKit+MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UIKit+MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C79C311E2882712400B6CBB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C79C31202882712400B6CBB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C79C31222882712400B6CBB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C79C31252882712400B6CBB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C79C31272882712400B6CBB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C79C312A2882712400B6CBB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				C79C31382882CCAD00B6CBB2 /* Protocol */,
 				C72A1F652882FB0500DF4944 /* View */,
 				C79C31422882CCAD00B6CBB2 /* ViewModel */,
-				C79C31222882712400B6CBB2 /* ViewController.swift */,
 				C79C313328829A6200B6CBB2 /* Storyboard */,
 			);
 			path = "UIKit+MVVM";
@@ -395,7 +392,6 @@
 				C72B3B1C2884601B00E85958 /* LocationDetailViewModel.swift in Sources */,
 				C72A1F6E2882FDB700DF4944 /* ResultViewModel.swift in Sources */,
 				C72B3B1E2884602400E85958 /* EpisodeDetailViewModel.swift in Sources */,
-				C79C31232882712400B6CBB2 /* ViewController.swift in Sources */,
 				C79C31552882CCAD00B6CBB2 /* Episode.swift in Sources */,
 				C79C314B2882CCAD00B6CBB2 /* RouteProtocol.swift in Sources */,
 				C79C315D2882DA1D00B6CBB2 /* UIWindow+Extension.swift in Sources */,
