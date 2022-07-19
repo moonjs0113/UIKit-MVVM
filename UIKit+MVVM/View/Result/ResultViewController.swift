@@ -95,17 +95,14 @@ class ResultViewController<M: Codable & Model>: UIViewController, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         startIndicatingActivity()
-        viewModel.requestInfo(index: indexPath.row) { model, error in
-            DispatchQueue.main.async { [weak self] in
-                guard let model = model, error == nil else {
-                    if let error = error {
-                        self?.showAlertController(title: "에러", message: "Error: \(error.localizedDescription)") {
-                            self?.stopIndicatingActivity()
-                        }
-                    }
-                    return
+        Task {
+            do {
+                let model = try await viewModel.requestInfo(index: indexPath.row)
+                self.setRoute(model: model)
+            } catch(let e as NetworkError) {
+                self.showAlertController(title: "에러", message: "Error: \(e)") {
+                    self.stopIndicatingActivity()
                 }
-                self?.setRoute(model: model)
             }
         }
     }

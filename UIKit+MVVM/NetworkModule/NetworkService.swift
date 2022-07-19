@@ -11,7 +11,7 @@ typealias NetworkClosure<D: Codable> = (D?, NetworkError?) -> Void
 
 enum NetworkService {
     static let baseURL = "https://rickandmortyapi.com/api/"
-    static let manager = NetworkManager(baseURL: baseURL)
+    static let manager = NetworkActer(baseURL: baseURL)
 }
 
 extension NetworkService {
@@ -77,15 +77,13 @@ extension NetworkService {
         }
     }
     
-    static func requestSingleObjectToURL<M: Codable>(as model: M.Type, url: String?, completeHandler: @escaping NetworkClosure<M>) {
+    static func requestSingleObjectToURL<M: Codable>(as model: M.Type, url: String?) async throws -> M {
         guard let url = URL(string: url ?? "") else {
-            completeHandler(nil, .invalidURL)
-            return
+            throw NetworkError.invalidURL
         }
         
-        manager.sendRequest(url: url, decodeTo: model.self) { result, error in
-            completeHandler(result, error)
-        }
+        let data = try await manager.sendRequest(url: url)
+        return try manager.jsonDecode(data: data, decodeTo: model.self)
     }
     
     static func requestMultipleObjects<M: Codable>(as model: M.Type, id: [Int], completeHandler: @escaping NetworkClosure<[M]>) {

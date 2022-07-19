@@ -255,10 +255,10 @@
 		C79C313D2882CCAD00B6CBB2 /* NetworkModule */ = {
 			isa = PBXGroup;
 			children = (
-				C79C313E2882CCAD00B6CBB2 /* NetworkManager.swift */,
-				C79C313F2882CCAD00B6CBB2 /* NetworkService.swift */,
-				C79C31402882CCAD00B6CBB2 /* HTTPMethod.swift */,
 				C79C31412882CCAD00B6CBB2 /* NetworkError.swift */,
+				C79C31402882CCAD00B6CBB2 /* HTTPMethod.swift */,
+				C79C313F2882CCAD00B6CBB2 /* NetworkService.swift */,
+				C79C313E2882CCAD00B6CBB2 /* NetworkManager.swift */,
 			);
 			path = NetworkModule;
 			sourceTree = "<group>";

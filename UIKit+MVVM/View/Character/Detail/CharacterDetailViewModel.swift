@@ -28,15 +28,8 @@ final class CharacterDetailViewModel {
         }
     }
     
-    func requestLocationData(url: String,  _ completeHandler: @escaping NetworkClosure<Location>) {
-        DispatchQueue.global().async {
-            NetworkService.requestSingleObjectToURL(as: Location.self, url: url) { location, error in
-                guard let location = location else {
-                    return completeHandler(nil, error)
-                }
-                completeHandler(location, error)
-            }
-        }
+    func requestLocationData(url: String) async throws -> Location {
+        return try await NetworkService.requestSingleObjectToURL(as: Location.self, url: url)
     }
     
     func requestEpisodeList(_ completeHandler: @escaping NetworkClosure<[Episode]>) {

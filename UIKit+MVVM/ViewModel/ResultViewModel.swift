@@ -15,15 +15,8 @@ final class ResultViewModel<M: Codable & Model>: ViewModelProtocol {
         self.models = models
     }
     
-    func requestInfo(index: Int, _ completeHandler: @escaping (M?, Error?) -> ()) {
-        DispatchQueue.global().async { [weak self] in
-            NetworkService.requestSingleObjectToURL(as: M.self, url: self?.models[index].url) { object, error in
-                guard let object = object else {
-                    return completeHandler(nil, error)
-                }
-                completeHandler(object, error)
-            }
-        }
+    func requestInfo(index: Int) async throws -> M {
+        return try await NetworkService.requestSingleObjectToURL(as: M.self, url: self.models[index].url)
     }
     
     func getCharacterViewModel(character: Character) -> CharacterDetailViewModel {

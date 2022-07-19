@@ -41,15 +41,16 @@ class CharacterDetailViewController: UIViewController {
     
     @objc func goToLocationDetail(_ sender: UIButton) {
         startIndicatingActivity()
-        characterDetailView.goToLocationDetail(tag: sender.tag) { [weak self] location, error in
-            if let error = error {
-                self?.showAlertController(title: "에러",
-                                    message: "Error: \(error.localizedDescription)")
-            } else if let location = location {
+        Task {
+            do {
+                let location = try await characterDetailView.requestLocationData(tag: sender.tag)
                 let locationViewModel = LocationDetailViewModel(location: location)
-                self?.navigateToLocationDetailView(locationViewModel)
+                self.navigateToLocationDetailView(locationViewModel)
+            } catch {
+                self.showAlertController(title: "에러",
+                                    message: "Error: \(error.localizedDescription)")
             }
-            self?.stopIndicatingActivity()
+            self.stopIndicatingActivity()
         }
     }
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class NetworkManager {
+class NetworkActer {
     let baseURL: String
     private var session = URLSession(configuration: URLSessionConfiguration.default,
                                      delegate: nil,
@@ -30,7 +30,7 @@ final class NetworkManager {
     }
 }
 
-extension NetworkManager {
+extension NetworkActer {
     func multipleObjectRouteValue(ids: [Int]) -> String {
         var result = ""
         if ids.count > 0 {
@@ -43,22 +43,23 @@ extension NetworkManager {
         return result
     }
     
-    /// Request Single Models by URL
-    func sendRequest<D: Codable>(url: URL, decodeTo: D.Type, completeHandler: @escaping NetworkClosure<D>) {
-        let request = self.request(url, nil)
-        self.session.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                completeHandler(nil, .nilResponse)
-                return
-            }
-            guard let result = try? JSONDecoder().decode(D.self, from: data) else {
-                completeHandler(nil, .errorDecodingJson)
-                return
-            }
-            
-            completeHandler(result, nil)
+    func jsonDecode<D: Codable>(data: Data, decodeTo: D.Type) throws -> D {
+        do {
+            return try JSONDecoder().decode(D.self, from: data)
+        } catch {
+            throw NetworkError.errorDecodingJson
         }
-        .resume()
+    }
+    
+    /// Request Single Models by URL
+    func sendRequest(url: URL) async throws -> Data {
+        let request = self.request(url, nil)
+        do {
+            let (data, _) = try await self.session.data(for: request)
+            return data
+        } catch {
+            throw NetworkError.nilResponse
+        }
     }
     
     /// Request Single or Multiple Models

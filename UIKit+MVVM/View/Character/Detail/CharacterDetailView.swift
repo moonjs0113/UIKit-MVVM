@@ -88,13 +88,9 @@ class CharacterDetailView: UIView {
         }
     }
     
-    func goToLocationDetail(tag: Int, completeHandler: @escaping NetworkClosure<Location>) {
+    func requestLocationData(tag: Int) async throws -> Location {
         let url = tag == 0 ? viewModel.character.origin.url : viewModel.character.location.url
-        viewModel.requestLocationData(url: url) { location, error in
-            DispatchQueue.main.async {
-                completeHandler(location, error)
-            }
-        }
+        return try await viewModel.requestLocationData(url: url)
     }
     
     func goToEpisodeList(completeHandler: @escaping NetworkClosure<[Episode]>) {
