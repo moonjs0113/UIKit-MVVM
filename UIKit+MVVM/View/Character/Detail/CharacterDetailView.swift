@@ -82,18 +82,21 @@ class CharacterDetailView: UIView {
     }
     
     func setupUI() {
-        viewModel.$imageData.compactMap { $0 }
-        .sink { [weak self] data in
-            self?.imageView.image =  UIImage(data: data)
+        viewModel.$imageData.map { optionalData in
+            guard let data = optionalData else {
+                return nil
+            }
+            return UIImage(data: data)
         }
+        .assign(to: \.image, on: imageView)
         .store(in: &subscriptions)
         
         viewModel.$error.compactMap { $0 }
-        .sink { [weak self] error in
-            self?.error = error
-            self?.viewModel.clearError()
-        }
-        .store(in: &subscriptions)
+            .sink { [weak self] error in
+                self?.error = error
+                self?.viewModel.clearError()
+            }
+            .store(in: &subscriptions)
         
         fetchData()
     }

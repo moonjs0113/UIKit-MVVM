@@ -17,10 +17,12 @@ final class CharacterDetailViewModel {
     }
     
     func requestImageData() {
-        do {
-            imageData = try NetworkService.requestImageData(url: character.image)
-        } catch (let error) {
-            self.error = error as? NetworkError
+        Task {
+            do {
+                imageData = try await NetworkService.requestImageData(url: character.image)
+            } catch (let error) {
+                self.error = error as? NetworkError
+            }
         }
     }
     

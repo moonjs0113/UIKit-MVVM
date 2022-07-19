@@ -126,4 +126,14 @@ extension NetworkActer {
         }
         return data
     }
+    
+    /// Request Character Image Data With Async
+    func sendRequestImageData(url: URL) async throws -> Data {
+        do {
+            let (data, _) = try await self.session.data(from: url)
+            return data
+        } catch {
+            throw NetworkError.nilImageData
+        }
+    }
 }

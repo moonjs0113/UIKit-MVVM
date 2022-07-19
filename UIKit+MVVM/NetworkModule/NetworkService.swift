@@ -108,4 +108,17 @@ extension NetworkService {
             throw e
         }
     }
+    
+    static func requestImageData(url: String) async throws -> Data {
+        guard let url = URL(string: url) else {
+            throw NetworkError.invalidURL
+        }
+        
+        do {
+            let imageData = try await manager.sendRequestImageData(url: url)
+            return imageData
+        } catch (let e as NetworkError) {
+            throw e
+        }
+    }
 }
