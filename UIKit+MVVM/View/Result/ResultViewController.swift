@@ -99,7 +99,7 @@ class ResultViewController<M: Codable & Model>: UIViewController, UITableViewDel
             do {
                 let model = try await viewModel.requestInfo(index: indexPath.row)
                 self.setRoute(model: model)
-            } catch(let e as NetworkError) {
+            } catch (let e as NetworkError) {
                 self.showAlertController(title: "에러", message: "Error: \(e)") {
                     self.stopIndicatingActivity()
                 }

@@ -104,7 +104,7 @@ extension NetworkService {
         do {
             let imageData = try manager.sendRequestImageData(url: url)
             return imageData
-        } catch(let e as NetworkError) {
+        } catch (let e as NetworkError) {
             throw e
         }
     }

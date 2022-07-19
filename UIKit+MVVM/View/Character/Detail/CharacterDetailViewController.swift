@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class CharacterDetailViewController: UIViewController {
     private var characterDetailView = CharacterDetailView()
+    private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,13 +18,8 @@ class CharacterDetailViewController: UIViewController {
         title = characterDetailView.getTitleText()
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        do {
-            try characterDetailView.setupUI()
-        } catch (let e){
-            self.showAlertController(title: "에러",
-                                message: "Error: \(e as? NetworkError)")
-        }
-        self.stopIndicatingActivity()
+        characterDetailView.setupUI()
+        stopIndicatingActivity()
     }
     
     override func loadView() {
@@ -33,6 +30,14 @@ class CharacterDetailViewController: UIViewController {
         characterDetailView.locationButton.addTarget(self, action: #selector(goToLocationDetail(_:)), for: .touchUpInside)
         
         characterDetailView.episodeButton.addTarget(self, action: #selector(goToEpisodeList(_:)), for: .touchUpInside)
+        
+        characterDetailView.$error.compactMap { $0 }
+        .sink { [weak self] error in
+            self?.showAlertController(title: "에러",
+                                      message: "Error: \(error)")
+            self?.characterDetailView.clearError()
+        }
+        .store(in: &subscriptions)
     }
     
     func prepareView(viewModel: CharacterDetailViewModel) {
@@ -42,13 +47,9 @@ class CharacterDetailViewController: UIViewController {
     @objc func goToLocationDetail(_ sender: UIButton) {
         startIndicatingActivity()
         Task {
-            do {
-                let location = try await characterDetailView.requestLocationData(tag: sender.tag)
+            if let location = await characterDetailView.requestLocationData(tag: sender.tag) {
                 let locationViewModel = LocationDetailViewModel(location: location)
                 self.navigateToLocationDetailView(locationViewModel)
-            } catch {
-                self.showAlertController(title: "에러",
-                                    message: "Error: \(error.localizedDescription)")
             }
             self.stopIndicatingActivity()
         }
@@ -56,11 +57,8 @@ class CharacterDetailViewController: UIViewController {
     
     @objc func goToEpisodeList(_ sender: UIButton) {
         startIndicatingActivity()
-        characterDetailView.goToEpisodeList { [weak self] episodes, error in
-            if let error = error {
-                self?.showAlertController(title: "에러",
-                                    message: "Error: \(error.localizedDescription)")
-            } else if let episodes = episodes {
+        characterDetailView.goToEpisodeList { [weak self] episodes in
+            if let episodes = episodes {
                 let resultViewModel = ResultViewModel<Episode>(models: episodes)
                 self?.navigateToEpisodeListView(resultViewModel)
             }

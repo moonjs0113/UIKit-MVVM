@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class CharacterDetailView: UIView {
     private var viewModel: CharacterDetailViewModel!
+    private var subscriptions = Set<AnyCancellable>()
+    @Published private(set)var error: NetworkError?
     
     // MARK: - Interface Builder
     @IBOutlet var view: UIView!
@@ -66,9 +69,7 @@ class CharacterDetailView: UIView {
             locationButton.isEnabled = false
         }
         
-        if let imageData = viewModel.imageData {
-            imageView.image = UIImage(data: imageData, scale: 1)
-        }
+        viewModel.requestImageData()
     }
     
     // MARK: - Method
@@ -80,25 +81,43 @@ class CharacterDetailView: UIView {
         return viewModel.character.name
     }
     
-    func setupUI() throws {
-        do {
-            try viewModel.requestImageData()
-        } catch(let e as NetworkError) {
-            throw e
+    func setupUI() {
+        viewModel.$imageData.compactMap { $0 }
+        .sink { [weak self] data in
+            self?.imageView.image =  UIImage(data: data)
         }
-        self.fetchData()
+        .store(in: &subscriptions)
+        
+        viewModel.$error.compactMap { $0 }
+        .sink { [weak self] error in
+            self?.error = error
+            self?.viewModel.clearError()
+        }
+        .store(in: &subscriptions)
+        
+        fetchData()
     }
     
-    func requestLocationData(tag: Int) async throws -> Location {
+    func requestLocationData(tag: Int) async -> Location? {
         let url = tag == 0 ? viewModel.character.origin.url : viewModel.character.location.url
-        return try await viewModel.requestLocationData(url: url)
+        do {
+            return try await viewModel.requestLocationData(url: url)
+        } catch (let error) {
+            self.error = error as? NetworkError
+            return nil
+        }
     }
     
-    func goToEpisodeList(completeHandler: @escaping NetworkClosure<[Episode]>) {
+    func goToEpisodeList(completeHandler: @escaping ([Episode]?) -> ()) {
         viewModel.requestEpisodeList { episodes, error in
+            self.error = error
             DispatchQueue.main.async {
-                completeHandler(episodes, error)
+                completeHandler(episodes)
             }
         }
+    }
+    
+    func clearError() {
+        error = nil
     }
 }

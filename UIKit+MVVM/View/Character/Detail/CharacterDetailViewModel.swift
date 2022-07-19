@@ -9,15 +9,19 @@ import Foundation
 
 final class CharacterDetailViewModel {
     var character: Character
-    var imageData: Data?
-    var error: NetworkError?
+    @Published private(set)var imageData: Data?
+    @Published private(set)var error: NetworkError?
     
     required init(character: Character) {
         self.character = character
     }
     
-    func requestImageData() throws {
-        self.imageData = try NetworkService.requestImageData(url: character.image)
+    func requestImageData() {
+        do {
+            imageData = try NetworkService.requestImageData(url: character.image)
+        } catch (let error) {
+            self.error = error as? NetworkError
+        }
     }
     
     func requestLocationData(url: String) async throws -> Location {
