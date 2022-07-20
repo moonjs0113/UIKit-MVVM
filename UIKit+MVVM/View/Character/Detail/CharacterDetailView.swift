@@ -19,6 +19,7 @@ class CharacterDetailView: UIView {
     @IBOutlet weak var idLabel: UILabel!
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageViewIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var speciesLabel: UILabel!
@@ -85,6 +86,9 @@ class CharacterDetailView: UIView {
         viewModel.$imageData.map { optionalData in
             guard let data = optionalData else {
                 return nil
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.imageViewIndicator.stopAnimating()
             }
             return UIImage(data: data)
         }
