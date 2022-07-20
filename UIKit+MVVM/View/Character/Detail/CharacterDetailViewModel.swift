@@ -17,9 +17,10 @@ final class CharacterDetailViewModel {
     }
     
     func requestImageData() {
-        Task {
+        let imageURL = character.image
+        Task { @MainActor in
             do {
-                imageData = try await NetworkService.requestImageData(url: character.image)
+                self.imageData = try await NetworkService.requestImageData(url: imageURL)
             } catch (let error) {
                 self.error = error as? NetworkError
             }
