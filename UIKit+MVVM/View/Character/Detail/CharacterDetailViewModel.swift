@@ -18,13 +18,11 @@ final class CharacterDetailViewModel {
     
     func requestImageData() {
         let imageURL = character.image
-        DispatchQueue.main.async {
-            Task { [weak self] in
-                do {
-                    self?.imageData = try await NetworkService.requestImageData(url: imageURL)
-                } catch (let error) {
-                    self?.error = error as? NetworkError
-                }
+        Task { @MainActor in
+            do {
+                self.imageData = try await NetworkService.requestImageData(url: imageURL)
+            } catch (let error) {
+                self.error = error as? NetworkError
             }
         }
     }
