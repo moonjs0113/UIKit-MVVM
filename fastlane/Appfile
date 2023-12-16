@@ -1,5 +1,5 @@
 app_identifier("com.moonjs.UIKit-MVVM") # The bundle identifier of your app
-apple_id("JongSeek Moon") # Your Apple Developer Portal username
+apple_id("jongseek98@naver.com") # Your Apple Developer Portal username
 team_name("JongSeek Moon")
 team_id("Z629PZ4XVL") # Developer Portal Team ID
 itc_team_id("121701944")
