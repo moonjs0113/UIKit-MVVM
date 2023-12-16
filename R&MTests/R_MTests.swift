@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import UIKit_MVVM
 
 final class R_MTests: XCTestCase {
     

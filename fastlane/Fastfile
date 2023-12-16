@@ -39,7 +39,9 @@ platform :ios do
       scheme: "R&MTests"
     )
     # 3.build app
-    build_app
+    build_app(
+      scheme: "R&M"
+    )
     # 4.TestFlight에 
     upload_to_testflight
     # pilot(api_key_path: "fastlane/B7J765X838.json")
