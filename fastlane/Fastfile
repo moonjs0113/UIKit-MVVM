@@ -52,9 +52,9 @@ platform :ios do
       #   }
       # }
     )
-    # 4.TestFlight에 
-    upload_to_testflight
-    # pilot(api_key_path: "fastlane/B7J765X838.json")
+    
+    # upload_to_testflight
+    pilot(api_key_path: "fastlane/B7J765X838.json")
   end
 end
 
