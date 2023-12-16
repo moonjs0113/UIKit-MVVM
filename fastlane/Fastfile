@@ -44,8 +44,11 @@ platform :ios do
     # 3.build app
     build_app(
       scheme: "R&M",
-      provisioningProfiles: {
-        "com.moonjs.UIKit-MVVM" => "match AppStore com.moonjs.UIKit-MVVM"
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.moonjs.UIKit-MVVM" => "match AppStore com.moonjs.UIKit-MVVM"
+        }
       }
     )
     # 4.TestFlight에 
