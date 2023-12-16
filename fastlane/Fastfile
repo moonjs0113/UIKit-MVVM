@@ -41,7 +41,8 @@ platform :ios do
     # 3.build app
     build_app(
       scheme: "R&M",
-      xcargs: "-allowProvisioningUpdates"
+      export_method: "app-store",
+      export_xcargs: "-allowProvisioningUpdates"
     )
     # 4.TestFlight에 
     upload_to_testflight
