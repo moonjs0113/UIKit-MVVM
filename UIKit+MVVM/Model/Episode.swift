@@ -33,6 +33,5 @@ struct Episode: Codable, Model {
                 return "page=" + "\(page)"
             }
         }
-        
     }
 }
