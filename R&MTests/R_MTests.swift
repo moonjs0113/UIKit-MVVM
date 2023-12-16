@@ -30,6 +30,6 @@ final class R_MTests: XCTestCase {
     }
     
 //    func testPerformanceExample() throws {
-//        // This is an example of a perfo
+//        // This is an example of 
 //
 }
