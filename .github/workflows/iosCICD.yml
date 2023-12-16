@@ -15,8 +15,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         
-      - name: Install Fastlane
-        run: brew install fastlane
+      # - name: Install Fastlane
+      #   run: brew install fastlane
         
       - name: Select Xcode Version
         uses: maxim-lobanov/setup-xcode@v1
@@ -36,6 +36,9 @@ jobs:
       #     bundler-cache: true  
           
       - name: Run Fastlane
-        run: fastlane release
+        run: bundle exec fastlane release
+        # run: fastlane release
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
       
