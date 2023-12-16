@@ -23,11 +23,9 @@ platform :ios do
   desc "build app and upload to testflight"
   lane :release do
     match(type: "appstore")
-    # 1.TestFlight 최근 빌드 번호 가져오기
     latest_build_number=latest_testflight_build_number(
       api_key_path: "fastlane/B7J765X838.json"
     )
-    # 2.build number 1 올리기
     increment_build_number(
       build_number: latest_build_number + 1
     )
