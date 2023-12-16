@@ -1,0 +1,44 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  # desc "Description of what the lane does"
+  # lane :custom_lane do
+    # add actions here: https://docs.fastlane.tools/actions
+  # end
+  desc "build app and upload to testflight"
+  lane :release do
+    match(type: "appstore")
+    # 1.TestFlight 최근 빌드 번호 가져오기
+    latest_build_number=latest_testflight_build_number(
+      api_key_path: "fastlane/B7J765X838.json"
+    )
+    # 2.build number 1 올리기
+    increment_build_number(
+      build_number: latest_build_number + 1
+    )
+    run_tests(
+      scheme: "R&MTests"
+    )
+    # 3.build app
+    build_app
+    # 4.TestFlight에 
+    upload_to_testflight
+    # pilot(api_key_path: "fastlane/B7J765X838.json")
+  end
+end
+

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character: Codable, Model {    
+public struct Character: Codable, Model {    
     typealias FilterType = CharacterFilter
     
     let id: Int
