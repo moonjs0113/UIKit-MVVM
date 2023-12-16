@@ -35,7 +35,7 @@ jobs:
       #     ruby-version: 2.7.2
       #     bundler-cache: true  
       - name: Clone Test
-        run: git clone https://github.com/moonjs0113/CICD.git
+        run: git clone git@github.com:moonjs0113/CICD.git
       # - name: Run Fastlane
         # run: bundle exec fastlane release
         # run: fastlane release
