@@ -34,11 +34,12 @@ jobs:
       #   with:
       #     ruby-version: 2.7.2
       #     bundler-cache: true  
-          
-      - name: Run Fastlane
-        run: bundle exec fastlane release
+      - name: Clone Test
+        run: git clone https://github.com/moonjs0113/CICD.git
+      # - name: Run Fastlane
+        # run: bundle exec fastlane release
         # run: fastlane release
-        env:
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+        # env:
+          # MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
       
