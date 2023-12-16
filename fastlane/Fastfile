@@ -40,7 +40,8 @@ platform :ios do
     )
     # 3.build app
     build_app(
-      scheme: "R&M"
+      scheme: "R&M",
+      xcargs: "-allowProvisioningUpdates"
     )
     # 4.TestFlight에 
     upload_to_testflight

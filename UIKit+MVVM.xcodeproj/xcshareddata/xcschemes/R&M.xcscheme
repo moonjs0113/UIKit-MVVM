@@ -20,6 +20,20 @@
                ReferencedContainer = "container:UIKit+MVVM.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C7E0AC212B2D5D31002B2CFF"
+               BuildableName = "R&amp;MTests.xctest"
+               BlueprintName = "R&amp;MTests"
+               ReferencedContainer = "container:UIKit+MVVM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
