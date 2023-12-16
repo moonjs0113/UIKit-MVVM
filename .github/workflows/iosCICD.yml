@@ -29,11 +29,11 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
     
-      - name: Setup ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.2
-          bundler-cache: true  
+      # - name: Setup ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 2.7.2
+      #     bundler-cache: true  
           
       - name: Run Fastlane
         run: fastlane release
