@@ -27,7 +27,10 @@ platform :ios do
       issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
       key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"]
     )
-    match(type: "appstore")
+    match(
+      type: "appstore",
+      readonly: is_ci
+    )
     
     latest_build_number=latest_testflight_build_number(
       api_key_path: "fastlane/B7J765X838.json"
@@ -40,9 +43,10 @@ platform :ios do
     )
     # 3.build app
     build_app(
-      scheme: "R&M",
-      export_method: "app-store",
-      export_xcargs: "-allowProvisioningUpdates"
+      scheme: "R&M"
+      provisioningProfiles: {
+        "com.moonjs.UIKit-MVVM" => "match AppStore com.moonjs.UIKit-MVVM"
+      }
     )
     # 4.TestFlight에 
     upload_to_testflight
