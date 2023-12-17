@@ -27,9 +27,19 @@ platform :ios do
       issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
       key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"]
     )
+    create_keychain(
+      name: ENV["KEYCHAIN_NAME"],
+      password: ENV["KEYCHAIN_PASSWORD"],
+      timeout: 1800,
+      default_keychain: true,
+      unlock: true,
+      lock_when_sleeps: false
+    )
     match(
       type: "appstore",
-      readonly: is_ci
+      readonly: is_ci,
+      keychain_name: ENV["KEYCHAIN_NAME"],
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
     )
     
     latest_build_number=latest_testflight_build_number(
