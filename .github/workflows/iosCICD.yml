@@ -1,5 +1,6 @@
 name: iOS CI/CD with Fastlane
 
+# CICD Branch에 대한 Push 혹은 Pull Request 발생 시, 아래 jobs 실행
 on:
   push:
     branches: [ "CICD" ]
@@ -8,29 +9,35 @@ on:
 
 jobs:
   build:
+    # jobs의 이름
     name: Build and Upload to TestFlight
+    # 실행 환경
     runs-on: macos-latest
 
     steps:
+      # 작업을 수행할 현재 Git Repository Checkout
       - name: Checkout Repository
         uses: actions/checkout@v3
         
+      # CD Tool인 fastlane 설치
       - name: Install Fastlane
         run: brew install fastlane
-        
+      
+      # 프로젝트 build를 수행할 Xcode의 버전 설정
       - name: Select Xcode Version
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest-stable
       
+      # 인증서 정보를 가져올 Private Repository 접근을 위한 SSH 설정
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
     
+      # fastlane 실행
       - name: Run Fastlane
-        # run: bundle exec fastlane release
         run: fastlane release
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
