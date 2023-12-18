@@ -22,12 +22,31 @@ platform :ios do
   # end
   desc "build app and upload to testflight"
   lane :release do
-    match(type: "appstore")
-    # 1.TestFlight 최근 빌드 번호 가져오기
+    create_keychain(
+      name: ENV["KEYCHAIN_NAME"],
+      password: ENV["KEYCHAIN_PASSWORD"],
+      timeout: 1800,
+      default_keychain: true,
+      unlock: true,
+      lock_when_sleeps: false
+    )
+    
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"]
+    )
+
+    match(
+      type: "appstore",
+      readonly: is_ci,
+      keychain_name: ENV["KEYCHAIN_NAME"],
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+    )
+    
     latest_build_number=latest_testflight_build_number(
       api_key_path: "fastlane/B7J765X838.json"
     )
-    # 2.build number 1 올리기
     increment_build_number(
       build_number: latest_build_number + 1
     )
@@ -35,10 +54,18 @@ platform :ios do
       scheme: "R&MTests"
     )
     # 3.build app
-    build_app
-    # 4.TestFlight에 
-    upload_to_testflight
-    # pilot(api_key_path: "fastlane/B7J765X838.json")
+    build_app(
+      scheme: "R&M"
+      # export_method: "app-store",
+      # export_options: {
+      #   provisioningProfiles: {
+      #     "com.moonjs.UIKit-MVVM" => "match AppStore com.moonjs.UIKit-MVVM"
+      #   }
+      # }
+    )
+    
+    # upload_to_testflight
+    pilot(api_key_path: "fastlane/B7J765X838.json")
   end
 end
 

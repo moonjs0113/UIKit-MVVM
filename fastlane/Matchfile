@@ -1,10 +1,11 @@
-git_url("https://github.com/moonjs0113/CICD.git")
+git_url("git@github.com:moonjs0113/CICD.git")
+# git_url("https://github.com/moonjs0113/CICD.git")
 
 storage_mode("git")
 
 type("appstore") # The default type, can be: appstore, adhoc, enterprise or development
 
-app_identifier(["com.moonjs.UIKit-MVVM"])
+app_identifier("com.moonjs.UIKit-MVVM")
 username("jongseek98@naver.com") # Your Apple Developer Portal username
 
 # For all available options run `fastlane match --help`
