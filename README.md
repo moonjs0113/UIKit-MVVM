@@ -1,18 +1,20 @@
-# UIKit-MVVM
+# Rick & Morty Dictionary
+
 [![Swift Version][swift-image]](https://swift.org/)
 [![Xcode Version][Xcode-image]](https://developer.apple.com/kr/xcode/)
 [![Platform][Platform-image]](https://developer.apple.com/kr/ios/)
 
-[swift-image]:https://img.shields.io/badge/Swift-5.6-orange?style=flat
-[Xcode-image]: https://img.shields.io/badge/Xcode-13.3-blue?style=flat
-[Platform-image]: https://img.shields.io/badge/iOS-15.4+-blue?style=flat
+[swift-image]:https://img.shields.io/badge/Swift-5.9-orange?style=flat
+[Xcode-image]: https://img.shields.io/badge/Xcode-15.2-blue?style=flat
+[Platform-image]: https://img.shields.io/badge/iOS-16-blue?style=flat
 
 # Description
 UIKit과 MVVM 패턴을 사용해보는 프로젝트입니다.
 
-동시에 Swift Concurrency와 Combine을 함께 사용해봅니다.
+Swift Concurrency를 공부하기 위해서 Network 코드를 CompleteHandler 방식과 Await/Async 방식으로 나눠서 작성해봅니다.
+마지막으로 Combine를 함께 사용해봅니다.
 
-Open API Server [Rick And Morty API](https://rickandmortyapi.com/)를 사용합니다.
+Open API Server [Rick And Morty API](https://rickandmortyapi.com/)
 
 # 1. Project Structure
 ``` shell
@@ -76,13 +78,3 @@ Xcode Project
     ├── ResultViewModel.swift
     └── SearchViewModel.swift
 ```
-
-# 2. Network Module
-
-# 3. Model
-
-# 4. ViewModel
-
-# 5. View
-
-# 6. 
