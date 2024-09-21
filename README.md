@@ -6,7 +6,7 @@
 
 [swift-image]:https://img.shields.io/badge/Swift-5.9-orange?style=flat
 [Xcode-image]: https://img.shields.io/badge/Xcode-15.2-blue?style=flat
-[Platform-image]: https://img.shields.io/badge/iOS-16-blue?style=flat
+[Platform-image]: https://img.shields.io/badge/iOS-16.0+-blue?style=flat
 
 # Description
 UIKit과 MVVM 패턴을 사용해보는 프로젝트입니다.
