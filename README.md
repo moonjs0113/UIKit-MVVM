@@ -11,9 +11,7 @@
 # Description
 UIKit과 MVVM 패턴을 사용해보는 프로젝트입니다.
 
-Swift Concurrency를 공부하기 위해서 Network 코드를 CompleteHandler 방식과 Await/Async 방식으로 나눠서 작성해봅니다.
-마지막으로 Combine를 함께 사용해봅니다.
-
+레포지토리를 변경하였습니다. -> [RickAndMorty App](https://github.com/moonjs0113/RickAndMorty.git)
 Open API Server [Rick And Morty API](https://rickandmortyapi.com/)
 
 # 1. Project Structure
