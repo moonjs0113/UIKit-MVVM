@@ -1,3 +1,5 @@
+# **레포지토가 변경하였습니다. -> [RickAndMorty App](https://github.com/moonjs0113/RickAndMorty.git)**
+
 # Rick & Morty Dictionary
 
 [![Swift Version][swift-image]](https://swift.org/)
@@ -11,7 +13,6 @@
 # Description
 UIKit과 MVVM 패턴을 사용해보는 프로젝트입니다.
 
-레포지토리를 변경하였습니다. -> [RickAndMorty App](https://github.com/moonjs0113/RickAndMorty.git)
 Open API Server [Rick And Morty API](https://rickandmortyapi.com/)
 
 # 1. Project Structure
