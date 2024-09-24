@@ -1,4 +1,4 @@
-# **레포지토가 변경하였습니다. -> [RickAndMorty App](https://github.com/moonjs0113/RickAndMorty.git)**
+# **레포지토리가 변경하였습니다. -> [RickAndMorty App](https://github.com/moonjs0113/RickAndMorty.git)**
 
 # Rick & Morty Dictionary
 
